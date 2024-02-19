@@ -47,7 +47,7 @@ def matrix_inverse(matrix):
             count += 1
             scalar = 1 / matrix[i, i]
             elementary_matrix = scalar_multiplication_elementary_matrix(n, i, scalar)
-            print(f"elementary matrix to make the diagonal element 1 :\n {elementary_matrix} \n")
+            #print(f"elementary matrix to make the diagonal element 1 :\n {elementary_matrix} \n")
 
             matrix = np.dot(elementary_matrix, matrix)
             #print(f"The matrix after elementary operation :\n {matrix}")
