@@ -3,11 +3,6 @@ import inverse_matrix as m
 from colors import bcolors
 from matrix_utility import print_matrix
 
-def print_first_three_elementary_matrices(n, elementary_matrices):
-    print(bcolors.WARNING, "\nPrinting the first three elementary matrices:\n", bcolors.ENDC)
-    for i in range(min(3, len(elementary_matrices))):
-        print(f"Elementary matrix {i + 1}:\n{elementary_matrices[i]}\n")
-
 def norm(mat):
     size = len(mat)
     max_row = 0
