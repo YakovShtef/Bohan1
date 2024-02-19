@@ -38,14 +38,14 @@ def matrix_inverse(matrix):
             elementary_matrix = swap_rows(np.identity(n), i, j)
             identity = np.dot(elementary_matrix, identity)
             count += 1
-            if count <= 3:
+            if count <= 3 and not count == 0:
                 print(f"Swap between row {i} and row {j}:\n{elementary_matrix}")
 
         if matrix[i, i] != 1:
             count += 1
             scalar = 1 / matrix[i, i]
             elementary_matrix = scalar_multiplication_elementary_matrix(n, i, scalar)
-            if count <= 3:
+            if count <= 3 and not count == 0:
                 print(f"Elementary matrix to make the diagonal element 1 for row {i}:\n{elementary_matrix}")
             matrix = np.dot(elementary_matrix, matrix)
             identity = np.dot(elementary_matrix, identity)
@@ -55,7 +55,7 @@ def matrix_inverse(matrix):
                 count += 1
                 scalar = -matrix[j, i]
                 elementary_matrix = row_addition_elementary_matrix(n, j, i, scalar)
-                if count <= 3:
+                if count <= 3 and not count == 0:
                     print(f"Elementary matrix for R{j+1} = R{j+1} + ({scalar}R{i+1}):\n{elementary_matrix}")
                 matrix = np.dot(elementary_matrix, matrix)
                 identity = np.dot(elementary_matrix, identity)

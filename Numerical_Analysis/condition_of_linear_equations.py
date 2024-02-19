@@ -52,9 +52,9 @@ def condition_number(A):
           " Name: Yakov Shtefan, 208060111 \n")
 """
 if __name__ == '__main__':
-    A = np.array([[2, 3, 4],
-                  [1, 1, 2],
-                  [3, 2, 1]])
+    A = np.array([[2, 1, 0],
+                  [3, -1, 0],
+                  [1, 4, -2]])
     cond = condition_number(A)
 
-    print(bcolors.OKGREEN, "\n condition number: ", cond, bcolors.ENDC)
+    #print(bcolors.OKGREEN, "\n condition number: ", cond, bcolors.ENDC)
