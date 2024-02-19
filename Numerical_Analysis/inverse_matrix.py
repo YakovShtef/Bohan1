@@ -17,26 +17,13 @@ def swap_rows(matrix, row1, row2):
         matrix[row1][i], matrix[row2][i] = matrix[row2][i], matrix[row1][i]
     return temp_matrix
 
-
-def print_first_three_elementary_matrices(n, elementary_matrices):
-    print(bcolors.WARNING, "\nPrinting the first three elementary matrices:\n", bcolors.ENDC)
-    for i in range(min(3, len(elementary_matrices))):
-        print(f"Elementary matrix {i + 1}:\n{elementary_matrices[i]}\n")
-
-def print_last_three_elementary_matrices(n, elementary_matrices):
-    print(bcolors.WARNING, "\nPrinting the last three elementary matrices:\n", bcolors.ENDC)
-    start_index = max(0, len(elementary_matrices) - 3)
-    for i in range(start_index, len(elementary_matrices)):
-        print(f"Elementary matrix {i + 1}:\n{elementary_matrices[i]}\n")
-
-
 def matrix_inverse(matrix):
-    print(bcolors.OKBLUE, f"=================== Finding the inverse of a non-singular matrix using elementary row operations ===================\n {matrix}\n", bcolors.ENDC)
+    #print(bcolors.OKBLUE, f"=================== Finding the inverse of a non-singular matrix using elementary row operations ===================\n {matrix}\n", bcolors.ENDC)
     if matrix.shape[0] != matrix.shape[1]:
         raise ValueError("Input matrix must be square.")
 
     determinant = np.linalg.det(matrix)
-    print("determinant check: ", determinant)
+    #print("determinant check: ", determinant)
     if determinant == 0:
         raise ValueError("Matrix is singular (determinant is equal to zero) , cannot find its inverse.")
 
@@ -52,7 +39,7 @@ def matrix_inverse(matrix):
             matrix = swap_rows(matrix, i, j)
             elementary_matrix = swap_rows(np.identity(n), i, j)
             identity = np.dot(elementary_matrix, identity)
-            print(f"swap between row {i} and row {j}\n", matrix)
+            #print(f"swap between row {i} and row {j}\n", matrix)
 
 
         if matrix[i, i] != 1:
@@ -63,10 +50,10 @@ def matrix_inverse(matrix):
             print(f"elementary matrix to make the diagonal element 1 :\n {elementary_matrix} \n")
 
             matrix = np.dot(elementary_matrix, matrix)
-            print(f"The matrix after elementary operation :\n {matrix}")
+            #print(f"The matrix after elementary operation :\n {matrix}")
             identity = np.dot(elementary_matrix, identity)
             #print(f"current inverse :\n {identity}")
-            print(bcolors.OKGREEN, "------------------------------------------------------------------------------------------------------------------",  bcolors.ENDC)
+            #print(bcolors.OKGREEN, "------------------------------------------------------------------------------------------------------------------",  bcolors.ENDC)
 
 
         # Zero out the elements above and below the diagonal
@@ -75,26 +62,26 @@ def matrix_inverse(matrix):
                 count += 1
                 scalar = -matrix[j, i]
                 elementary_matrix = row_addition_elementary_matrix(n, j, i, scalar)
-                print(f"elementary matrix for R{j+1} = R{j+1} + ({scalar}R{i+1}):\n {elementary_matrix} \n")
+                #print(f"elementary matrix for R{j+1} = R{j+1} + ({scalar}R{i+1}):\n {elementary_matrix} \n")
                 matrix = np.dot(elementary_matrix, matrix)
-                print(f"The matrix after elementary operation :\n {matrix}")
+                #print(f"The matrix after elementary operation :\n {matrix}")
                 identity = np.dot(elementary_matrix, identity)
                 #print(f"current inverse :\n {identity}")
-                print(bcolors.OKGREEN, "------------------------------------------------------------------------------------------------------------------", bcolors.ENDC)
+                #print(bcolors.OKGREEN, "------------------------------------------------------------------------------------------------------------------", bcolors.ENDC)
     for i in range(n-1, -1, -1):
         for j in range(n-1, -1, -1):
             if i > j:
                 count += 1
                 scalar = -matrix[j, i]
                 elementary_matrix = row_addition_elementary_matrix(n, j, i, scalar)
-                print(f"elementary matrix for R{j + 1} = R{j + 1} + ({scalar}R{i + 1}):\n {elementary_matrix} \n")
+                #print(f"elementary matrix for R{j + 1} = R{j + 1} + ({scalar}R{i + 1}):\n {elementary_matrix} \n")
                 matrix = np.dot(elementary_matrix, matrix)
-                print(f"The matrix after elementary operation :\n {matrix}")
+                #print(f"The matrix after elementary operation :\n {matrix}")
                 identity = np.dot(elementary_matrix, identity)
                 # print(f"current inverse :\n {identity}")
-                print(bcolors.OKGREEN,
-                      "------------------------------------------------------------------------------------------------------------------",
-                      bcolors.ENDC)
+                #print(bcolors.OKGREEN,
+                      #"------------------------------------------------------------------------------------------------------------------",
+                      #bcolors.ENDC)
 
     return identity
 
@@ -110,19 +97,20 @@ def matrix_inverse(matrix):
 
 if __name__ == '__main__':
     np.set_printoptions(suppress=True, precision=4)
-    #the input matrix test text
-    A = np.array([[4, 1, 3],
-                  [3, 7, 0],
-                  [2, 4, 9]])
-    #the solution vector for matrix A
-    B = np.array([0, 0, 0])
-
+    # the input matrix test text
+    A = np.array([[2, 1, 0],
+                  [3, -1, 0],
+                  [1, 4, -2]])
+    # the solution vector for matrix A
+    B = np.array([-3, 1, -5])
+    c.condition_number(A)
+    c.print_first_three_elementary_matrices(3, A)
     try:
         A_inverse = matrix_inverse(A)
-        print(bcolors.OKBLUE, "\nInverse of matrix A: \n", A_inverse)
-        print(bcolors.OKBLUE, "\nThe solution vector of matrix A: \n", np.dot(A_inverse, B))
+        #print(bcolors.OKBLUE, "\nInverse of matrix A: \n", A_inverse)
+        #print(bcolors.OKBLUE, "\nThe solution vector of matrix A: \n", np.dot(A_inverse, B))
 
-        print("=====================================================================================================================", bcolors.ENDC)
+        #print("=====================================================================================================================", bcolors.ENDC)
 
     except ValueError as e:
         print(str(e))
