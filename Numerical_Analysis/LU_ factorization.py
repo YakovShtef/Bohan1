@@ -69,6 +69,15 @@ def lu_solve(A_b, n):
     for x in result:
         print(bcolors.OKBLUE, "{:.6f}".format(x))
 
+"""
+    print(" Git: https://github.com/YakovShtef/Bohan1.git \n"
+          " Date:18/3/2024 \n"
+          " Group: Daniel Houri , 209445071 \n"
+          "        Yakov Shtefan , 208060111 \n"
+          "        Vladislav Rabinovich , 323602383 \n"
+          "        Eve Hackmon, 209295914\n""
+          " Name: Yakov Shtefan, 208060111 \n")
+"""
 if __name__ == '__main__':
     A_b = np.array([[0, 1, 1, 1, -8],
                     [1, 1, 2, 1, -20],

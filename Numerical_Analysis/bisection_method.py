@@ -64,6 +64,15 @@ def find_all_roots(f, interval, tol):
         a += interval1
     return roots
 
+"""
+    print(" Git: https://github.com/YakovShtef/Bohan1.git \n"
+          " Date:18/3/2024 \n"
+          " Group: Daniel Houri , 209445071 \n"
+          "        Yakov Shtefan , 208060111 \n"
+          "        Vladislav Rabinovich , 323602383 \n"
+          "        Eve Hackmon, 209295914\n""
+          " Name: Yakov Shtefan, 208060111 \n")
+"""
 if __name__ == '__main__':
     tol = 1e-6
     x = sp.symbols('x')
