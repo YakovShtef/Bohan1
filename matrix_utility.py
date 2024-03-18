@@ -41,7 +41,7 @@ def is_diagonally_dominant(mat):
 
     d = np.diag(np.abs(mat))  # Find diagonal coefficients
     s = np.sum(np.abs(mat), axis=1) - d  # Find row sum without diagonal
-    return np.all(d >= s)
+    return np.all(d > s)
 
 
 def is_square_matrix(mat):
@@ -320,3 +320,11 @@ def RowXchange(matrix, vector):
                 max = abs(matrix[i][i])
 
     return [matrix, vector]
+
+def make_diagonally_dominant(A):
+    n = len(A)
+    for i in range(n):
+        row_sum = sum(abs(A[i][j]) for j in range(n) if j != i)
+        if abs(A[i][i]) <= row_sum:
+            A[i][i] = row_sum + 1
+    return A

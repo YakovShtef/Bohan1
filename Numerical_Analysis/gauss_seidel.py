@@ -62,9 +62,9 @@ def gauss_seidel(A, b, X0, TOL=0.001, N=200):
           " Name: Yakov Shtefan, 208060111 \n")
 """
 if __name__ == '__main__':
-
     A = np.array([[3, -1, 1], [0, 1, -1], [1, 1, -2]])
     b = np.array([4, -1, -3])
+
     X0 = np.zeros_like(b)
 
     solution =gauss_seidel(A, b, X0)

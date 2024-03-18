@@ -2,7 +2,7 @@ import numpy as np
 from numpy.linalg import norm
 from inverse_matrix import swap_rows
 from colors import bcolors
-from matrix_utility import is_diagonally_dominant, DominantDiagonalFix, is_square_matrix
+from matrix_utility import is_diagonally_dominant, DominantDiagonalFix, make_diagonally_dominant
 
 """
 Performs Jacobi iterations to solve the line system of equations, Ax=b, 
@@ -26,7 +26,7 @@ Returns variables:
 
 """
 
-def jacobi_iterative(A, b, X0, TOL=0.001, N=200):
+def jacobi_iterative(A, b, X0, TOL=1e-16, N=200):
     n = len(A)
     for k in range(n):
         # Partial Pivoting: Find the pivot row with the largest absolute value in the current column
@@ -49,7 +49,9 @@ def jacobi_iterative(A, b, X0, TOL=0.001, N=200):
     if not is_diagonally_dominant(A):
         raise ValueError('Matrix is not diagonally dominant - Cant preform jacobi algorithm\n')
 
-    print("Iteration" + "\t\t\t".join([" {:>12}".format(var) for var in ["x{}".format(i) for i in range(1, len(A) + 1)]]))
+    print('Matrix is  diagonally dominant - preforming jacobi algorithm\n')
+    k = 1
+    print( "Iteration" + "\t\t\t".join([" {:>12}".format(var) for var in ["x{}".format(i) for i in range(1, len(A) + 1)]]))
     print("-----------------------------------------------------------------------------------------------")
 
     while k <= N:
@@ -63,8 +65,8 @@ def jacobi_iterative(A, b, X0, TOL=0.001, N=200):
 
         print("{:<15} ".format(k) + "\t\t".join(["{:<15} ".format(val) for val in x]))
 
-        if np.linalg.norm(x - X0, np.inf) < TOL:
-            return x, k
+        if norm(x - X0, np.inf) < TOL:
+            return tuple(x)
 
         k += 1
         X0 = x.copy()
@@ -78,11 +80,11 @@ def jacobi_iterative(A, b, X0, TOL=0.001, N=200):
           " Group: Daniel Houri , 209445071 \n"
           "        Yakov Shtefan , 208060111 \n"
           "        Vladislav Rabinovich , 323602383 \n"
-          "        Eve Hackmon, 209295914\n""
-          " Name: Yakov Shtefan, 208060111 \n")
+          "        Eve Hackmon, 209295914\n"
+          "        Aaron Hajaj, 311338198\n"
+          " Name:  Yakov Shtefan, 208060111 \n")
 """
 if __name__ == "__main__":
-
     A = np.array([[3, -1, 1], [0, 1, -1], [1, 1, -2]])
     b = np.array([4, -1, -3])
 

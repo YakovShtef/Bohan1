@@ -81,22 +81,24 @@ def backward_substitution(mat):
     return x
 
 """
-    print(" Date:19/2/2024 \n"
+    print(" Git: https://github.com/YakovShtef/Bohan1.git \n"
+          " Date:18/3/2024 \n"
           " Group: Daniel Houri , 209445071 \n"
           "        Yakov Shtefan , 208060111 \n"
           "        Vladislav Rabinovich , 323602383 \n"
           "        Eve Hackmon, 209295914\n""
-          " Git: https://github.com/YakovShtef/Bohan1.git \n"
+          "        Aaron Hajaj, 311338198\n"
           " Name: Yakov Shtefan, 208060111 \n")
 """
 
 
 if __name__ == '__main__':
     np.set_printoptions(suppress=True, precision=4)
-    A_b = [[1, 2, 3, 4, 5],
-           [2, 3, 4, 5, 1],
-           [8, 8, 1, 8, 1],
-           [24, 15, 22, 1, 8]]
+    A_b = [[-1, 1, 3, -3, 1, -1],
+           [3, -3, -4, 2, 3, 18],
+           [2, 1, -5, -3, 5, 6],
+           [-5, -6, 4, 1, 3, 22],
+           [3, -2, -2, -3, 5, 10]]
 
     result = gaussianElimination(A_b)
     print(np.array(A_b))

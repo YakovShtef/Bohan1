@@ -20,7 +20,6 @@ def bisection_method(f, a, b, tol):
 
     c, k = 0, 0
     steps = max_steps(a, b, tol)
-
     while abs(b - a) > tol and k < steps:
         c = a + (b - a) / 2
         if f(c) == 0:
@@ -41,8 +40,10 @@ def find_all_roots(f, interval, tol):
     f1 = lambdify(x, f)
     a, b = interval
     roots = []
-    interval1 = 0.2
+    interval1 = 0.01
+
     while a <= b:
+
         flag = -1
         try:
             root = bisection_method(f1, a, a+interval1, tol)
@@ -71,16 +72,17 @@ def find_all_roots(f, interval, tol):
           "        Yakov Shtefan , 208060111 \n"
           "        Vladislav Rabinovich , 323602383 \n"
           "        Eve Hackmon, 209295914\n""
+          "        Aaron Hajaj, 311338198\n"
           " Name: Yakov Shtefan, 208060111 \n")
 """
 if __name__ == '__main__':
     tol = 1e-6
     x = sp.symbols('x')
 
-    f = x**3 - 3*x**2 + 2
+    f = (1*x**2 - 7*x +3)/6*x
     fTAG = sp.diff(f)
 
-    interval = (-2, 3)
+    interval = (0, 3)
 
     roots = find_all_roots(f, interval, tol)
     Extreme_Points = find_all_roots(fTAG, interval, tol)
